@@ -18,21 +18,33 @@ namespace AddressBookProgram
             while (true)
             {
                 Console.WriteLine("1: Add A New Person Details"+
-                                  "\n2: View Person Details"+
-                                  "\n3: Exit"
+                                  "\n2: Add Default Contact Details" +
+                                  "\n3: View Person Details" +
+                                  "\n4: Edit Person Details"+
+                                  "\n4: Exit"
                                   ); 
                 Console.Write("Enter The Choice From Above : ");
                 int userChoice = int.Parse(Console.ReadLine());
                 switch (userChoice)
                 {
                     case 1:
-                        //Creating a contact with person details(UC1) 
+                        //Creating a new contact with person details(UC2) 
                         AddContact.PersonDetails(addressBook);
                         break;
                     case 2:
-                        addressBook.ViewContact();
+                        //Creating a contact with person details(UC1) 
+                        DefaultContactDetails.AddPersonContact(addressBook);
                         break;
                     case 3:
+                        addressBook.ViewContact();
+                        break;
+                    case 4:
+                        //Editing a contact details with given name(UC3)
+                        Console.Write("Enter The First Name Exactly To Edit : ");
+                        string fName = Console.ReadLine();
+                        addressBook.EditContact(fName);
+                        break;
+                    case 5:
                         Environment.Exit(0);
                         break;
                     default:

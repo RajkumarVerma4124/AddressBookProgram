@@ -10,7 +10,7 @@ namespace AddressBookProgram
     {
         public static void PersonDetails(AddressBook addressBook)
         {
-             //Creating a contact with person details(UC1)
+            //Creating a contact with person details(UC1)
             Console.Write("Enter Your First Name : ");
             string firstName = Console.ReadLine();
             Console.Write("Enter Your Last Name : ");
@@ -28,7 +28,7 @@ namespace AddressBookProgram
             Console.Write("Enter Your EmailId : ");
             string emailId = Console.ReadLine();
 
-            //User Data Entry
+            //User Data Entry            
             addressBook.AddContactDetails(firstName, lastName, address, city, state, zip, phoneNum, emailId);
             Console.ReadLine();
         }
