@@ -21,7 +21,8 @@ namespace AddressBookProgram
                                   "\n2: Add Default Contact Details" +
                                   "\n3: View Person Details" +
                                   "\n4: Edit Person Details"+
-                                  "\n4: Exit"
+                                  "\n5: Delete Person Details"+
+                                  "\n6: Exit"
                                   ); 
                 Console.Write("Enter The Choice From Above : ");
                 int userChoice = int.Parse(Console.ReadLine());
@@ -40,11 +41,17 @@ namespace AddressBookProgram
                         break;
                     case 4:
                         //Editing a contact details with given name(UC3)
-                        Console.Write("Enter The First Name Exactly To Edit : ");
+                        Console.Write("Enter The First Name Exactly To Edit Contact Records: ");
                         string fName = Console.ReadLine();
                         addressBook.EditContact(fName);
                         break;
                     case 5:
+                        //Deleting a contact details with given name(UC4)
+                        Console.Write("Enter The First Name Exactly To Delete Contact Records : ");
+                        string firstName = Console.ReadLine();
+                        addressBook.DeleteContact(firstName);
+                        break;
+                    case 6:
                         Environment.Exit(0);
                         break;
                     default:

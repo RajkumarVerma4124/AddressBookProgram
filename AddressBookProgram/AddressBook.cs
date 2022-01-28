@@ -97,5 +97,18 @@ namespace AddressBookProgram
                 }
             }
         }
+        //Method to delete contact details using first name(UC4)
+        public void DeleteContact(string personName) 
+        {
+            for(int i = 0; i < contactList.Count; i++)
+            {
+                if(contactList[i].firstName == personName)
+                {
+                    Console.WriteLine("Record Of {0} Deleted Successfully", contactList[i].firstName);
+                    contactList.RemoveAt(i);
+                }
+            }
+           
+        }
     }
 }
