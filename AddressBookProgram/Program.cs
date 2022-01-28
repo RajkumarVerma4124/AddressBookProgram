@@ -8,17 +8,38 @@ namespace AddressBookProgram
 {
     public class Program
     {
-        //Initializing variable
-        public static int count=0;
         public static void Main(string[] args)
         {
             Console.WriteLine("Welcome To Address Book Program");
             Console.ReadLine();
 
-            //Creating a contact with person details(UC1)
+            //Adding New Contact (UC2)
             AddressBook addressBook = new AddressBook();
-            addressBook.AddContactDetails("Raj", "Verma", "Ghansoli", "NaviMumbai", "Maharashtra", 401546, 9517534567, "abc123@gmail.com");
-            addressBook.ViewContact();
+            while (true)
+            {
+                Console.WriteLine("1: Add A New Person Details"+
+                                  "\n2: View Person Details"+
+                                  "\n3: Exit"
+                                  ); 
+                Console.Write("Enter The Choice From Above : ");
+                int userChoice = int.Parse(Console.ReadLine());
+                switch (userChoice)
+                {
+                    case 1:
+                        //Creating a contact with person details(UC1) 
+                        AddContact.PersonDetails(addressBook);
+                        break;
+                    case 2:
+                        addressBook.ViewContact();
+                        break;
+                    case 3:
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.WriteLine("Enter A Right Choice");
+                        continue;
+                }
+            }
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AddressBookProgram
 {
-    public class AddressBook
+    public class AddressBook: IContact
     {
         //Creating a contact list
         List<Contact> contactList;
@@ -26,14 +26,17 @@ namespace AddressBookProgram
         //Method to view contact
         public void ViewContact()
         {
+            int count = 1;
             foreach (var contact in contactList)
             {
+                Console.WriteLine("Person Details {0} ------> ",count);
                 Console.WriteLine("First Name : {0} || Last Name : {1}", contact.firstName, contact.lastName);
                 Console.WriteLine("Address : {0} ", contact.address);
                 Console.WriteLine("City Name : {0} || State Name : {1} || ZipCode : {2}", contact.city, contact.state, contact.zip);
                 Console.WriteLine("Phone Number : {0}", contact.phoneNumber);
                 Console.WriteLine("Email Id : {0} ", contact.emailId);
                 Console.ReadLine();
+                count++;
             }
         }
     }
