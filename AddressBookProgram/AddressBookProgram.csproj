@@ -47,6 +47,7 @@
     <Compile Include="AddressBook.cs" />
     <Compile Include="Contact.cs" />
     <Compile Include="DefaultContactDetails.cs" />
+    <Compile Include="EditContactDetails.cs" />
     <Compile Include="IContact.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
