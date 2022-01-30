@@ -89,9 +89,17 @@ namespace AddressBookProgram
         //Refactor to add multiple Address Book to the System(UC6)
         public void AddAddressBook(string addBookName)
         {
-            AddressBook addressBook = new AddressBook();
-            addressContactBook.Add(addBookName, addressBook);
-            Console.WriteLine("AddressBook Created.\n");
+            var contact = addressContactBook;
+            if (contact.ContainsKey(addBookName))
+            {
+                Console.WriteLine("Book Name Exists ");
+            }
+            else
+            {
+                AddressBook addressBook = new AddressBook();
+                addressContactBook.Add(addBookName, addressBook);
+                Console.WriteLine("AddressBook Created.\n");
+            }      
         }
 
         //For Checking If AddressBook Is Present Or Not(UC6)

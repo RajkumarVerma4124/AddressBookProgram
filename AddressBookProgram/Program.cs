@@ -43,9 +43,8 @@ namespace AddressBookProgram
                         //Creating a new addresbook for storing contacts(UC6)
                         Console.Write("Enter A New AddressBook Name To Add Another Contacts : ");
                         string newBookName = Console.ReadLine();
-                        addressBook.CheckAddressBook(newBookName);
+                        addressBook.AddAddressBook(newBookName);
                         bookName = newBookName;
-                        addressBook.AddAddressBook(bookName);
                         break;
                     case 3:
                         //Switching AddressBooks(UC6)
@@ -103,6 +102,7 @@ namespace AddressBookProgram
                             else
                             {
                                 addressBook.CheckAddressBook(bookName);
+                                break;
                             }
                         }
                         break;
