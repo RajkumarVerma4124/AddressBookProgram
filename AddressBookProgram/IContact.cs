@@ -15,6 +15,5 @@ namespace AddressBookProgram
         void DeleteContact(string personName, string bookName);
         void AddAddressBook(string addBookName);
         void CheckAddressBook(string bookName);
-
     }
 }

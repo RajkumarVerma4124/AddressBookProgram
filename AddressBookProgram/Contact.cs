@@ -18,6 +18,7 @@ namespace AddressBookProgram
         public long phoneNumber;
         public string emailId;
 
+        //Parameterized constructor to initialize the addressbook values
         public Contact(string firstName, string lastName, string address, string city, string state, int zip, long phoneNumber, string emailId)
         {
             this.firstName = firstName;
@@ -28,6 +29,21 @@ namespace AddressBookProgram
             this.zip = zip; 
             this.phoneNumber = phoneNumber;
             this.emailId = emailId;
+        }
+
+        //Overiding the equals method to check the person details(UC7)
+        public override bool Equals(object obj)
+        {
+            Contact contact = (Contact)obj;
+            if (contact == null)
+                return false;
+            else
+                return firstName.Equals(contact.firstName) && lastName.Equals(contact.lastName);
+        }
+
+        public override int GetHashCode()
+        {
+            return default;
         }
     }
 }

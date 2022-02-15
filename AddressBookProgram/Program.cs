@@ -101,7 +101,7 @@ namespace AddressBookProgram
                             }
                             else
                             {
-                                addressBook.CheckAddressBook(bookName);
+                                Console.WriteLine("Book Name Doesnt Exist");
                                 break;
                             }
                         }

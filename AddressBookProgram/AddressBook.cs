@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace AddressBookProgram
 {
+    /// <summary>
+    /// Creating The Address Book For Adding Multiple Books And Multiple Person
+    /// </summary>
     public class AddressBook: IContact
     {
         //Creating a contact list
@@ -21,8 +24,23 @@ namespace AddressBookProgram
         //Method to create contact(UC1) 
         public void AddContactDetails(string firstName, string lastName, string address, string city, string state, int zip, long phoneNumber, string emailId, string bookName)
         {
-            Contact personDetail = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, emailId);
-            addressContactBook[bookName].contactList.Add(personDetail);
+            try
+            {
+                Contact personDetail = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, emailId);
+                if (CheckDuplicateEntry(personDetail, bookName))
+                {
+                    Console.WriteLine("Person Already Exits In The Book");
+                }
+                else
+                {      
+                    addressContactBook[bookName].contactList.Add(personDetail);
+                    Console.WriteLine("Added Contact SuccessFully\n");                   
+                }    
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         //Method to view contact
@@ -31,7 +49,7 @@ namespace AddressBookProgram
             int count = 1;
             foreach (var contact in addressContactBook[bookName].contactList)
             {
-                Console.WriteLine("Person Details {0} ------> ",count);
+                Console.WriteLine("Person Details Of {0} ------> ",contact.firstName);
                 Console.WriteLine("First Name : {0} || Last Name : {1}", contact.firstName, contact.lastName);
                 Console.WriteLine("Address : {0} ", contact.address);
                 Console.WriteLine("City Name : {0} || State Name : {1} || ZipCode : {2}", contact.city, contact.state, contact.zip);
@@ -45,10 +63,9 @@ namespace AddressBookProgram
         //Method to view single contact
         public void ViewContact(string personName, string bookName)
         {
-            for (int i = 0; i < addressContactBook[bookName].contactList.Count; i++)
+            foreach (var contact in  addressContactBook[bookName].contactList)
             {
-                var contact = addressContactBook[bookName].contactList[i];
-                if (contact.firstName == personName)
+                if (contact.firstName.Equals(personName))
                 {
                     Console.WriteLine("First Name : {0} || Last Name : {1}", contact.firstName, contact.lastName);
                     Console.WriteLine("Address : {0} ", contact.address);
@@ -74,7 +91,7 @@ namespace AddressBookProgram
         //Method to delete contact details using first name(UC4)
         public void DeleteContact(string personName, string bookName) 
         {
-            for(int i = 0; i < addressContactBook[bookName].contactList.Count; i++)
+            for (int i = 0; i < addressContactBook[bookName].contactList.Count; i++)
             {
                 var contact = addressContactBook[bookName].contactList[i];
                 if (contact.firstName == personName)
@@ -82,8 +99,9 @@ namespace AddressBookProgram
                     Console.WriteLine("Record Of {0} Deleted Successfully", contact.firstName);
                     addressContactBook[bookName].contactList.RemoveAt(i);
                 }
-            }
-
+                else
+                    Console.WriteLine("Contact Not Found");
+            }   
         }
 
         //Refactor to add multiple Address Book to the System(UC6)
@@ -105,28 +123,50 @@ namespace AddressBookProgram
         //For Checking If AddressBook Is Present Or Not(UC6)
         public void CheckAddressBook(string bookName)
         {
-            foreach (var contact in addressContactBook)
+            foreach (var book in addressContactBook)
             {
-                if (contact.Key == bookName)
+                if (book.Key == bookName)
                 {
                     Console.WriteLine("Switching To Book Name : "+bookName);
                     Console.ReadLine();
                     break;
-                }        
-                else
-                {
-                    Console.Write("Book Name Doesnt Exist");
-                    Console.ReadLine();
-                    break;
-                }
-                   
+                }                       
             }
+            Console.Write("Book Name Doesnt Exist");
         }
 
         //Returning the bookname with contact values to view(UC6 
         public Dictionary<string, AddressBook> GetAddressBook()
         {
             return addressContactBook;
+        }
+
+        //Returning list of books with values(UC7)
+        public List<Contact> GetListOfDictctionaryKeys(string bookName)
+        {
+            List<Contact> book = new List<Contact>();
+            if (bookName != null)
+            {
+                foreach (var value in addressContactBook[bookName].contactList)
+                {
+                    book.Add(value);
+                }
+                return book;
+            }
+            else
+                return default;
+        }
+
+        //Checking For Duplicate Entry If Any(UC7)
+        public bool CheckDuplicateEntry(Contact contact, string bookName)
+        {
+            List<Contact> book = GetListOfDictctionaryKeys(bookName);
+            if (bookName != null)
+            {
+                if (book.Any(b => b.Equals(contact)))
+                    return true;
+            }
+            return default;
         }
     }
 }

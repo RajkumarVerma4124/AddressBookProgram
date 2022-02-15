@@ -11,18 +11,9 @@ namespace AddressBookProgram
         //Method To Edit Single Peron Details
         public static void EditPersonDetails(Contact contactList, string personName)
         {
-            if (contactList.firstName == personName)
+            if (contactList.firstName.Equals(personName))
             {
-                Console.WriteLine("\nChoose What You Want To Edit" +
-                            "\n1.First Name" +
-                            "\n2.Last Name" +
-                            "\n3.Address" +
-                            "\n4.City" +
-                            "\n5.State" +
-                            "\n6.Area Zip" +
-                            "\n7.Phone Number" +
-                            "\n8.Email Id"
-                            );
+                Console.WriteLine("\nChoose What You Want To Edit \n1.First Name \n2.Last Name \n3.Address \n4.City \n5.State \n6.Area Zip \n7.Phone Number \n8.Email Id");
                 int choice = int.Parse(Console.ReadLine());
                 switch (choice)
                 {
@@ -59,6 +50,7 @@ namespace AddressBookProgram
                         contactList.emailId = Console.ReadLine();
                         break;
                 }
+                Console.WriteLine("Edited The Contact Succesfully\n");
             }
         }
     }
