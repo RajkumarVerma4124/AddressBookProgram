@@ -41,9 +41,16 @@ namespace AddressBookProgram
                 return firstName.Equals(contact.firstName) && lastName.Equals(contact.lastName);
         }
 
+        //orveriding hashcode method
         public override int GetHashCode()
         {
             return default;
+        }
+
+        //Overiding string method to display the values serch for city and state(UC8) 
+        public override string ToString()
+        {
+            return $"First Name : {firstName} \nLast Name : {lastName} \nCity : {city} \nState : {state} \nEmail : {emailId} \nZip : {zip} \nPhone Number : {phoneNumber}\n";
         }
     }
 }
