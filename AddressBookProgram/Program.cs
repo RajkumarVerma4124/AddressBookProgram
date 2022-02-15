@@ -29,7 +29,8 @@ namespace AddressBookProgram
                                   "\n9: Delete Person Details"+
                                   "\n10: Show AddressBook"+
                                   "\n11: Search Person By City Or State"+
-                                  "\n12: Exit"
+                                  "\n12: Count Person By City Or State"+
+                                  "\n13: Exit"
                                   ); 
                 Console.Write("Enter The Choice From Above : ");
                 bool flag = int.TryParse(Console.ReadLine(), out int userChoice);
@@ -129,6 +130,9 @@ namespace AddressBookProgram
                             }
                             break;
                         case 12:
+                            addressBook.DisplayCountByCityandState();
+                            break;
+                        case 13:
                             Environment.Exit(0);
                             break;
                         default:

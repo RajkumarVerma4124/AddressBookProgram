@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Linq;
+using System.Collections;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -243,6 +245,57 @@ namespace AddressBookProgram
                     addressBookObj.personsState.Add(contact, contact.state);
                 }
             }
+        }
+
+        //Method to get number of contact persons by counting city or state(UC10)
+        public void DisplayCountByCityandState()
+        {
+            //Maintaining dictionary for person by city and person by state
+            CreateCityDictionary();
+            CreateStateDictionary();
+            var countByCity = new Dictionary<string, int>();
+            var countByState = new Dictionary<string, int>();
+            
+            //For counting persons city from diff addressbook
+            foreach (var obj in addressContactBook.Values)
+            {
+                foreach (var person in obj.personsCity)
+                {
+                    if (countByCity.ContainsKey(person.Value))
+                        countByCity[person.Value]++;
+                    else
+                    {
+                        countByCity.Add(person.Value, 0);
+                        countByCity[person.Value]++;
+                    }
+                }
+            }
+            Console.WriteLine("\nNumber of person in city wise count");
+            foreach (var person in countByCity)
+            {
+                Console.WriteLine($"{person.Key} : {person.Value}");
+            }
+
+            //For counting persons state from diff addressbook
+            foreach (var obj in addressContactBook.Values)
+            {
+                foreach (var person in obj.personsState)
+                {
+                    if (countByState.ContainsKey(person.Value))
+                        countByState[person.Value]++;
+                    else
+                    {
+                        countByState.Add(person.Value, 0);
+                        countByState[person.Value]++;
+                    }
+                }
+            }
+            Console.WriteLine("\nNumber of person in state wise count");
+            foreach (var person in countByState)
+            {
+                Console.WriteLine($"{person.Key} : {person.Value}");
+            }
+            Console.WriteLine();
         }
     }
 }
