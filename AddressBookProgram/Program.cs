@@ -19,8 +19,8 @@ namespace AddressBookProgram
             while (true)
             {
                 Console.WriteLine("1: Add A Default Addressbook"+
-                                  "\n2 Add A New Addressbook To Create Contact"+
-                                  "\n3 Switch AddressBook To Work On"+
+                                  "\n2: Add A New Addressbook To Create Contact"+
+                                  "\n3: Switch AddressBook To Work On"+
                                   "\n4: Add A New Person Details"+
                                   "\n5: Add Default Contact Details" +
                                   "\n6: View All Person Details"+
@@ -31,7 +31,8 @@ namespace AddressBookProgram
                                   "\n11: Search Person By City Or State"+
                                   "\n12: Count Person By City Or State"+
                                   "\n13: Sort Entries By Name, City, State Or Zip"+
-                                  "\n14: Exit"
+                                  "\n14: File IO Operations"+
+                                  "\n15: Exit"
                                   ); 
                 Console.Write("Enter The Choice From Above : ");
                 bool flag = int.TryParse(Console.ReadLine(), out int userChoice);
@@ -113,8 +114,8 @@ namespace AddressBookProgram
                             break;
                         case 11:
                             //Taking the input city and state from the user to search the person(UC8)
-                            Console.WriteLine("\n1.Search by city \n2.Search by state");
-                            int option = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("\n1: Search by city \n2: Search by state");
+                            int option = int.Parse(Console.ReadLine());
                             switch (option)
                             {
                                 case 1:
@@ -136,8 +137,8 @@ namespace AddressBookProgram
                             break;
                         case 13:
                             //Calling the method to display records sorted by name, city , state or zip(UC11&UC12)
-                            Console.WriteLine("\n1.Sort Records By Name \n2.Sort Records By City \n3.Sort Records By State \n4.Sort Records By Zip");
-                            int choice = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("\n1: Sort Records By Name \n2: Sort Records By City \n3: Sort Records By State \n4: Sort Records By Zip");
+                            int choice = int.Parse(Console.ReadLine());
                             switch (choice)
                             {
                                 case 1:
@@ -158,6 +159,23 @@ namespace AddressBookProgram
                             }
                             break;
                         case 14:
+                            //Calling file read and write operations method(UC13) 
+                            Console.WriteLine("\n1: Write Data Into The File \n2: Read Data From File");
+                            int fileChoice = int.Parse(Console.ReadLine());
+                            switch (fileChoice)
+                            {
+                                case 1:
+                                    FileIOOperations.WriteToFile(addressBook.addressContactBook);
+                                    break;
+                                case 2:
+                                    FileIOOperations.ReadFromFile();
+                                    break;
+                                default:
+                                    Console.WriteLine("Wrong Choice");
+                                    break;
+                            }
+                            break;
+                        case 15:
                             Environment.Exit(0);
                             break;
                         default:
