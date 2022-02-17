@@ -48,12 +48,16 @@
     <Compile Include="Contact.cs" />
     <Compile Include="DefaultContactDetails.cs" />
     <Compile Include="EditContactDetails.cs" />
+    <Compile Include="FileIOOperations.cs" />
     <Compile Include="IContact.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataFiles\AddressBook.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

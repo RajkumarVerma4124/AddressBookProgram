@@ -14,8 +14,8 @@ namespace AddressBookProgram
     public class AddressBook: IContact
     {
         //Creating a contact list
-        private Dictionary<string, Contact> contactList = new Dictionary<string, Contact>();
-        private Dictionary<string, AddressBook> addressContactBook = new Dictionary<string, AddressBook>();
+        public Dictionary<string, Contact> contactList = new Dictionary<string, Contact>();
+        public Dictionary<string, AddressBook> addressContactBook = new Dictionary<string, AddressBook>();
         private Dictionary<Contact, string> personsCity = new Dictionary<Contact, string>();
         private Dictionary<Contact, string> personsState = new Dictionary<Contact, string>();
     
