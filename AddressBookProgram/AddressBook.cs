@@ -14,17 +14,11 @@ namespace AddressBookProgram
     public class AddressBook: IContact
     {
         //Creating a contact list
-        private readonly List<Contact> contactList;
-        private readonly Dictionary<string, AddressBook> addressContactBook;
+        private Dictionary<string, Contact> contactList = new Dictionary<string, Contact>();
+        private Dictionary<string, AddressBook> addressContactBook = new Dictionary<string, AddressBook>();
         private Dictionary<Contact, string> personsCity = new Dictionary<Contact, string>();
         private Dictionary<Contact, string> personsState = new Dictionary<Contact, string>();
-
-        public AddressBook()
-        {
-            contactList = new List<Contact>();
-            addressContactBook = new Dictionary<string, AddressBook>();
-        }
-
+    
         //Method to create contact(UC1) 
         public void AddContactDetails(string firstName, string lastName, string address, string city, string state, int zip, long phoneNumber, string emailId, string bookName)
         {
@@ -37,7 +31,7 @@ namespace AddressBookProgram
                 }
                 else
                 {      
-                    addressContactBook[bookName].contactList.Add(personDetail);
+                    addressContactBook[bookName].contactList.Add(personDetail.firstName+" "+personDetail.lastName, personDetail);
                     Console.WriteLine("Added Contact SuccessFully\n");                   
                 }    
             }
@@ -51,7 +45,7 @@ namespace AddressBookProgram
         public void ViewContact(string bookName)
         {
             int count = 1;
-            foreach (var contact in addressContactBook[bookName].contactList)
+            foreach (var contact in addressContactBook[bookName].contactList.Values)
             {
                 Console.WriteLine("Person Details Of {0} ------> ",contact.firstName);
                 Console.WriteLine("First Name : {0} || Last Name : {1}", contact.firstName, contact.lastName);
@@ -69,13 +63,13 @@ namespace AddressBookProgram
         {
             foreach (var contact in  addressContactBook[bookName].contactList)
             {
-                if (contact.firstName.Equals(personName))
+                if (contact.Key.Equals(personName))
                 {
-                    Console.WriteLine("First Name : {0} || Last Name : {1}", contact.firstName, contact.lastName);
-                    Console.WriteLine("Address : {0} ", contact.address);
-                    Console.WriteLine("City Name : {0} || State Name : {1} || ZipCode : {2}", contact.city, contact.state, contact.zip);
-                    Console.WriteLine("Phone Number : {0}", contact.phoneNumber);
-                    Console.WriteLine("Email Id : {0} ", contact.emailId);
+                    Console.WriteLine("First Name : {0} || Last Name : {1}", contact.Value.firstName, contact.Value.lastName);
+                    Console.WriteLine("Address : {0} ", contact.Value.address);
+                    Console.WriteLine("City Name : {0} || State Name : {1} || ZipCode : {2}", contact.Value.city, contact.Value.state, contact.Value.zip);
+                    Console.WriteLine("Phone Number : {0}", contact.Value.phoneNumber);
+                    Console.WriteLine("Email Id : {0} ", contact.Value.emailId);
                     Console.ReadLine();
                 }
             }           
@@ -85,9 +79,8 @@ namespace AddressBookProgram
         public void EditContact(string personName, string bookName)
         {
             //Traversing the contact list
-            for (int i = 0; i < addressContactBook[bookName].contactList.Count; i++)
+            foreach (var contact in addressContactBook[bookName].contactList)
             {
-                var contact = addressContactBook[bookName].contactList[i];
                 EditContactDetails.EditPersonDetails(contact, personName);
             }
         }
@@ -95,17 +88,13 @@ namespace AddressBookProgram
         //Method to delete contact details using first name(UC4)
         public void DeleteContact(string personName, string bookName) 
         {
-            for (int i = 0; i < addressContactBook[bookName].contactList.Count; i++)
+            if (addressContactBook[bookName].contactList.ContainsKey(personName))
             {
-                var contact = addressContactBook[bookName].contactList[i];
-                if (contact.firstName == personName)
-                {
-                    Console.WriteLine("Record Of {0} Deleted Successfully", contact.firstName);
-                    addressContactBook[bookName].contactList.RemoveAt(i);
-                }
-                else
-                    Console.WriteLine("Contact Not Found");
-            }   
+                addressContactBook[bookName].contactList.Remove(personName);
+                Console.WriteLine("Record Of {0} Deleted Successfully", personName);
+            }
+            else
+                Console.WriteLine("Contact Not Found");   
         }
 
         //Refactor to add multiple Address Book to the System(UC6)
@@ -145,39 +134,11 @@ namespace AddressBookProgram
             return addressContactBook;
         }
 
-        //Returning list of values form particular book(UC7)
-        public List<Contact> GetListOfAddressBookValues(string bookName)
+        //Method to add a new list of values from multiple books(UC7 & UC8)
+        public List<Contact> GetListOfMulAddressBookKeys(string addrBookName)
         {
             List<Contact> book = new List<Contact>();
-            if (bookName != null)
-            {
-                foreach (var value in addressContactBook[bookName].contactList)
-                {
-                    book.Add(value);
-                }
-                return book;
-            }
-            else
-                return default;
-        }
-
-        //Checking For Duplicate Entry If Any(UC7)
-        public bool CheckDuplicateEntry(Contact contact, string bookName)
-        {
-            List<Contact> book = GetListOfAddressBookValues(bookName);
-            if (bookName != null)
-            {
-                if (book.Any(b => b.Equals(contact)))
-                    return true;
-            }
-            return default;
-        }
-
-        //Method to add a new list of values from multiple books(UC8)
-        public List<Contact> GetListOfMulAddressBookValues(List<Contact> addrBookName)
-        {
-            List<Contact> book = new List<Contact>();
-            foreach (var value in addrBookName)
+            foreach (var value in addressContactBook[addrBookName].contactList.Values)
             {
                 book.Add(value);
             }
@@ -185,7 +146,7 @@ namespace AddressBookProgram
         }
 
         //Method to add a new list of values from multiple dictionary's(UC9)
-        public List<Contact> GetListOfMulAddressBookValues(Dictionary<Contact, string> dictionaryName)
+        public List<Contact> GetListOfDictionaryContactKeys(Dictionary<Contact, string> dictionaryName)
         {
             List<Contact> book = new List<Contact>();
             foreach (var value in dictionaryName.Keys)
@@ -195,13 +156,25 @@ namespace AddressBookProgram
             return book;
         }
 
+        //Checking For Duplicate Entry If Any(UC7)
+        public bool CheckDuplicateEntry(Contact contact, string bookName)
+        {  
+            List<Contact> book = GetListOfMulAddressBookKeys(bookName);
+            if (bookName != null)
+            {
+                if (book.Any(b => b.Equals(contact)))
+                    return true;
+            }  
+            return default;
+        }
+
         //Method to search the person by city(UC8)
         public void SearchPersonByCity(string city)
         {
             CreateCityDictionary();
             foreach (AddressBook addrBookObj in addressContactBook.Values)
             {
-                List<Contact> contactList = GetListOfMulAddressBookValues(addrBookObj.personsCity);
+                List<Contact> contactList = GetListOfDictionaryContactKeys(addrBookObj.personsCity);
                 foreach (Contact contact in contactList.FindAll(c => c.city.Equals(city)).ToList())
                 {
                     Console.WriteLine(contact.ToString());
@@ -215,7 +188,7 @@ namespace AddressBookProgram
             CreateStateDictionary();
             foreach (AddressBook addressBookobj in addressContactBook.Values)
             {
-                List<Contact> contactList = GetListOfMulAddressBookValues(addressBookobj.personsState);
+                List<Contact> contactList = GetListOfDictionaryContactKeys(addressBookobj.personsState);
                 foreach (Contact contact in contactList.FindAll(c => c.state.Equals(state)).ToList())
                 {
                     Console.WriteLine(contact.ToString());
@@ -228,9 +201,12 @@ namespace AddressBookProgram
         {
             foreach (AddressBook addressBookObj in addressContactBook.Values)
             {
-                foreach (Contact contact in addressBookObj.contactList)
+                foreach (Contact contact in addressBookObj.contactList.Values)
                 {
-                    addressBookObj.personsCity.Add(contact, contact.city);
+                    if (addressBookObj.personsCity.ContainsKey(contact))
+                        continue;
+                    else
+                        addressBookObj.personsCity.Add(contact, contact.city);
                 }
             }
         }
@@ -240,9 +216,12 @@ namespace AddressBookProgram
         {
             foreach (AddressBook addressBookObj in addressContactBook.Values)
             {
-                foreach (Contact contact in addressBookObj.contactList)
+                foreach (Contact contact in addressBookObj.contactList.Values)
                 {
-                    addressBookObj.personsState.Add(contact, contact.state);
+                    if (addressBookObj.personsState.ContainsKey(contact))
+                        continue;
+                    else
+                        addressBookObj.personsState.Add(contact, contact.state);
                 }
             }
         }
@@ -296,6 +275,20 @@ namespace AddressBookProgram
                 Console.WriteLine($"{person.Key} : {person.Value}");
             }
             Console.WriteLine();
+        }
+
+        //Method to sort the entries in the address book(UC11)
+        public void SortRecordsByName()
+        {
+            foreach (AddressBook addressBookobj in addressContactBook.Values)
+            {
+                List<string> list = addressBookobj.contactList.Keys.ToList();
+                list.Sort();
+                foreach (string personName in list)
+                {
+                    Console.WriteLine(addressBookobj.contactList[personName]);
+                }
+            }
         }
     }
 }

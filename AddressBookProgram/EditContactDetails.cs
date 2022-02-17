@@ -9,9 +9,9 @@ namespace AddressBookProgram
     public class EditContactDetails
     {
         //Method To Edit Single Peron Details
-        public static void EditPersonDetails(Contact contactList, string personName)
+        public static void EditPersonDetails(KeyValuePair<string, Contact> contactList, string personName)
         {
-            if (contactList.firstName.Equals(personName))
+            if (contactList.Key.Equals(personName))
             {
                 Console.WriteLine("\nChoose What You Want To Edit \n1.First Name \n2.Last Name \n3.Address \n4.City \n5.State \n6.Area Zip \n7.Phone Number \n8.Email Id");
                 int choice = int.Parse(Console.ReadLine());
@@ -19,35 +19,35 @@ namespace AddressBookProgram
                 {
                     case 1:
                         Console.Write("Enter A New Entry For First Name : ");
-                        contactList.firstName = Console.ReadLine();
+                        contactList.Value.firstName = Console.ReadLine();
                         break;
                     case 2:
                         Console.Write("Enter A New Entry For Last Name : ");
-                        contactList.lastName = Console.ReadLine();
+                        contactList.Value.lastName = Console.ReadLine();
                         break;
                     case 3:
                         Console.Write("Enter A New Entry For Address : ");
-                        contactList.address = Console.ReadLine();
+                        contactList.Value.address = Console.ReadLine();
                         break;
                     case 4:
                         Console.Write("Enter A New Entry For New City : ");
-                        contactList.city = Console.ReadLine();
+                        contactList.Value.city = Console.ReadLine();
                         break;
                     case 5:
                         Console.Write("Enter A New Entry For State : ");
-                        contactList.state = Console.ReadLine();
+                        contactList.Value.state = Console.ReadLine();
                         break;
                     case 6:
                         Console.Write("Enter A New Entry For Zip : ");
-                        contactList.zip = int.Parse(Console.ReadLine());
+                        contactList.Value.zip = int.Parse(Console.ReadLine());
                         break;
                     case 7:
                         Console.Write("Enter A New Entry For Phone Number : ");
-                        contactList.phoneNumber = long.Parse(Console.ReadLine());
+                        contactList.Value.phoneNumber = long.Parse(Console.ReadLine());
                         break;
                     case 8:
                         Console.Write("Enter A New Entry For Email Id : ");
-                        contactList.emailId = Console.ReadLine();
+                        contactList.Value.emailId = Console.ReadLine();
                         break;
                 }
                 Console.WriteLine("Edited The Contact Succesfully\n");

@@ -50,7 +50,7 @@ namespace AddressBookProgram
         //Overiding string method to display the values serch for city and state(UC8) 
         public override string ToString()
         {
-            return $"First Name : {firstName} \nLast Name : {lastName} \nCity : {city} \nState : {state} \nEmail : {emailId} \nZip : {zip} \nPhone Number : {phoneNumber}\n";
+            return $"First Name : {firstName} \tLast Name : {lastName} \nCity : {city} \tState : {state} \tZip : {zip} \nEmail : {emailId}  \nPhone Number : {phoneNumber}\n";
         }
     }
 }
