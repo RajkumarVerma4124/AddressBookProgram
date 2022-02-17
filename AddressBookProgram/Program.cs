@@ -30,7 +30,7 @@ namespace AddressBookProgram
                                   "\n10: Show AddressBook"+
                                   "\n11: Search Person By City Or State"+
                                   "\n12: Count Person By City Or State"+
-                                  "\n13: Sort Entries By Name"+
+                                  "\n13: Sort Entries By Name, City, State Or Zip"+
                                   "\n14: Exit"
                                   ); 
                 Console.Write("Enter The Choice From Above : ");
@@ -131,10 +131,31 @@ namespace AddressBookProgram
                             }
                             break;
                         case 12:
+                            //Calling the display count of persons by city or state method(UC9)
                             addressBook.DisplayCountByCityandState();
                             break;
                         case 13:
-                            addressBook.SortRecordsByName();
+                            //Calling the method to display records sorted by name, city , state or zip(UC11&UC12)
+                            Console.WriteLine("\n1.Sort Records By Name \n2.Sort Records By City \n3.Sort Records By State \n4.Sort Records By Zip");
+                            int choice = Convert.ToInt32(Console.ReadLine());
+                            switch (choice)
+                            {
+                                case 1:
+                                    addressBook.SortRecordsByName();
+                                    break;
+                                case 2:
+                                    addressBook.SortRecordsByCity();
+                                    break;
+                                case 3:
+                                    addressBook.SortRecordsByState();
+                                    break;
+                                case 4:
+                                    addressBook.SortRecordsByZip();
+                                    break;
+                                default:
+                                    Console.WriteLine("Wrong Choice");
+                                    break;
+                            }
                             break;
                         case 14:
                             Environment.Exit(0);
