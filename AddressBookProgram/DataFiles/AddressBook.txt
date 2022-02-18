@@ -1,1 +1,15 @@
-{"firstName":"Ajay","lastName":"Matkar","address":"Chembur","city":"Mumbai","state":"Maharashtra","zip":456123,"phoneNumber":8523697412,"emailId":"abc789@gmail.com"}
+First Name : Raj 	Last Name : Verma 
+City : NaviMumbai 	State : Maharashtra 	Zip : 456123 
+Email : abc123@gmail.com  
+Phone Number : 9517534561
+
+First Name : Yash 	Last Name : Verma 
+City : Noida 	State : Delhi 	Zip : 789456 
+Email : abc456@gmail.com  
+Phone Number : 7412589631
+
+First Name : Ajay 	Last Name : Matkar 
+City : Mumbai 	State : Maharashtra 	Zip : 456123 
+Email : abc789@gmail.com  
+Phone Number : 8523697412
+

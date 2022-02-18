@@ -24,14 +24,14 @@ namespace AddressBookProgram
         {
             try
             {
-                Contact personDetail = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, emailId);
+                Contact personDetail = new Contact {FirstName = firstName, LastName = lastName, Address = address, City = city, State =  state, Zip = zip, PhoneNumber = phoneNumber, EmailId = emailId};
                 if (CheckDuplicateEntry(personDetail, bookName))
                 {
                     Console.WriteLine("Person Already Exits In The Book");
                 }
                 else
                 {      
-                    addressContactBook[bookName].contactList.Add(personDetail.firstName+" "+personDetail.lastName, personDetail);
+                    addressContactBook[bookName].contactList.Add(personDetail.FirstName+" "+personDetail.LastName, personDetail);
                     Console.WriteLine("Added Contact SuccessFully\n");                   
                 }    
             }
@@ -47,12 +47,12 @@ namespace AddressBookProgram
             int count = 1;
             foreach (var contact in addressContactBook[bookName].contactList.Values)
             {
-                Console.WriteLine("Person Details Of {0} ------> ",contact.firstName);
-                Console.WriteLine("First Name : {0} || Last Name : {1}", contact.firstName, contact.lastName);
-                Console.WriteLine("Address : {0} ", contact.address);
-                Console.WriteLine("City Name : {0} || State Name : {1} || ZipCode : {2}", contact.city, contact.state, contact.zip);
-                Console.WriteLine("Phone Number : {0}", contact.phoneNumber);
-                Console.WriteLine("Email Id : {0} ", contact.emailId);
+                Console.WriteLine("Person Details Of {0} ------> ",contact.FirstName);
+                Console.WriteLine("First Name : {0} || Last Name : {1}", contact.FirstName, contact.LastName);
+                Console.WriteLine("Address : {0} ", contact.Address);
+                Console.WriteLine("City Name : {0} || State Name : {1} || ZipCode : {2}", contact.City, contact.State, contact.Zip);
+                Console.WriteLine("Phone Number : {0}", contact.PhoneNumber);
+                Console.WriteLine("Email Id : {0} ", contact.EmailId);
                 Console.ReadLine();
                 count++;
             }
@@ -65,11 +65,11 @@ namespace AddressBookProgram
             {
                 if (contact.Key.Equals(personName))
                 {
-                    Console.WriteLine("First Name : {0} || Last Name : {1}", contact.Value.firstName, contact.Value.lastName);
-                    Console.WriteLine("Address : {0} ", contact.Value.address);
-                    Console.WriteLine("City Name : {0} || State Name : {1} || ZipCode : {2}", contact.Value.city, contact.Value.state, contact.Value.zip);
-                    Console.WriteLine("Phone Number : {0}", contact.Value.phoneNumber);
-                    Console.WriteLine("Email Id : {0} ", contact.Value.emailId);
+                    Console.WriteLine("First Name : {0} || Last Name : {1}", contact.Value.FirstName, contact.Value.LastName);
+                    Console.WriteLine("Address : {0} ", contact.Value.Address);
+                    Console.WriteLine("City Name : {0} || State Name : {1} || ZipCode : {2}", contact.Value.City, contact.Value.State, contact.Value.Zip);
+                    Console.WriteLine("Phone Number : {0}", contact.Value.PhoneNumber);
+                    Console.WriteLine("Email Id : {0} ", contact.Value.EmailId);
                     Console.ReadLine();
                 }
             }           
@@ -175,7 +175,7 @@ namespace AddressBookProgram
             foreach (AddressBook addrBookObj in addressContactBook.Values)
             {
                 List<Contact> contactList = GetListOfDictionaryContactKeys(addrBookObj.personsCity);
-                foreach (Contact contact in contactList.FindAll(c => c.city.Equals(city)).ToList())
+                foreach (Contact contact in contactList.FindAll(c => c.City.Equals(city)).ToList())
                 {
                     Console.WriteLine(contact.ToString());
                 }
@@ -189,7 +189,7 @@ namespace AddressBookProgram
             foreach (AddressBook addressBookObj in addressContactBook.Values)
             {
                 List<Contact> contactList = GetListOfDictionaryContactKeys(addressBookObj.personsState);
-                foreach (Contact contact in contactList.FindAll(c => c.state.Equals(state)).ToList())
+                foreach (Contact contact in contactList.FindAll(c => c.State.Equals(state)).ToList())
                 {
                     Console.WriteLine(contact.ToString());
                 }
@@ -206,7 +206,7 @@ namespace AddressBookProgram
                     if (addressBookObj.personsCity.ContainsKey(contact))
                         continue;
                     else
-                        addressBookObj.personsCity.Add(contact, contact.city);
+                        addressBookObj.personsCity.Add(contact, contact.City);
                 }
             }
         }
@@ -221,7 +221,7 @@ namespace AddressBookProgram
                     if (addressBookObj.personsState.ContainsKey(contact))
                         continue;
                     else
-                        addressBookObj.personsState.Add(contact, contact.state);
+                        addressBookObj.personsState.Add(contact, contact.State);
                 }
             }
         }
@@ -298,7 +298,7 @@ namespace AddressBookProgram
             foreach (AddressBook addressBookObj in addressContactBook.Values)
             {
                 List<Contact> contactList = GetListOfDictionaryContactKeys(addressBookObj.personsCity);
-                foreach (Contact contact in contactList.OrderBy(c => c.city).ToList())
+                foreach (Contact contact in contactList.OrderBy(c => c.City).ToList())
                 {
                     Console.WriteLine(contact);
                 }
@@ -312,7 +312,7 @@ namespace AddressBookProgram
             foreach (AddressBook addressBookObj in addressContactBook.Values)
             {
                 List<Contact> contactList = GetListOfDictionaryContactKeys(addressBookObj.personsState);
-                foreach (Contact contact in contactList.OrderBy(c => c.state).ToList())
+                foreach (Contact contact in contactList.OrderBy(c => c.State).ToList())
                 {
                     Console.WriteLine(contact);
                 }
@@ -324,7 +324,7 @@ namespace AddressBookProgram
         {
             foreach (AddressBook addressBookobj in addressContactBook.Values)
             {
-                foreach (Contact contact in addressBookobj.contactList.Values.OrderBy(c=>c.zip).ToList())
+                foreach (Contact contact in addressBookobj.contactList.Values.OrderBy(c=>c.Zip).ToList())
                 {
                     Console.WriteLine(contact);
                 }
