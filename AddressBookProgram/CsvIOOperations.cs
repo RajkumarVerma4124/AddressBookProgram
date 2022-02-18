@@ -45,7 +45,8 @@ namespace AddressBookProgram
             foreach (Contact contact in contactRecord)
             {
                 Console.WriteLine(contact);
-            }      
+            } 
+            streamReader.Close();
         }
     }
 }
