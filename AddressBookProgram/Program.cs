@@ -32,7 +32,8 @@ namespace AddressBookProgram
                                   "\n12: Count Person By City Or State"+
                                   "\n13: Sort Entries By Name, City, State Or Zip"+
                                   "\n14: File IO Operations"+
-                                  "\n15: Exit"
+                                  "\n15: Json IO Operations"+
+                                  "\n16: Exit"
                                   ); 
                 Console.Write("Enter The Choice From Above : ");
                 bool flag = int.TryParse(Console.ReadLine(), out int userChoice);
@@ -176,6 +177,23 @@ namespace AddressBookProgram
                             }
                             break;
                         case 15:
+                            //Calling json file serialize and deserialize method(UC13) 
+                            Console.WriteLine("\n1: Write Data Into The Json File \n2: Read Data From Json File");
+                            int jsonFileCh = int.Parse(Console.ReadLine());
+                            switch (jsonFileCh)
+                            {
+                                case 1:
+                                    JsonIOOperations.JsonSerialize(addressBook.addressContactBook);
+                                    break;
+                                case 2:
+                                    JsonIOOperations.JsonDeSerialize();
+                                    break;
+                                default:
+                                    Console.WriteLine("Wrong Choice");
+                                    break;
+                            }
+                            break;
+                        case 16:
                             Environment.Exit(0);
                             break;
                         default:

@@ -16,10 +16,10 @@ namespace AddressBookProgram
         public static string filePath = @"E:\CODING\Coding\React Web Apps\coreAPI\Fellowship\AddressBookProgram\AddressBookProgram\DataFiles\AddressBook.txt";
         
         //Method to write data into the text file using stream writer(UC13)
-        public static void WriteToFile(Dictionary<string, AddressBook> addressContactBook)
+        public static void WriteToFile(Dictionary<string, AddressBook> addressBookDictionary)
         {
             StreamWriter writer = File.AppendText(filePath);
-            foreach (var addressBookObj in addressContactBook.Values)
+            foreach (var addressBookObj in addressBookDictionary.Values)
             {
                 foreach (var contact in addressBookObj.contactList.Values)
                 {
