@@ -1,0 +1,47 @@
+{
+    "contacts": [{
+            "id": 1,
+            "FirstName": "Raj",
+            "LastName": "Verma",
+            "Address": "Ghansoli",
+            "City": "NaviMumbai",
+            "State": "Maharashtra",
+            "Zip": 456123,
+            "PhoneNumber": 9517534561,
+            "EmailId": "abc123@gmail.com"
+        },
+        {
+            "id": 2,
+            "FirstName": "Yash",
+            "LastName": "Verma",
+            "Address": "Sec-45",
+            "City": "Noida",
+            "State": "Delhi",
+            "Zip": 789456,
+            "PhoneNumber": 7412589631,
+            "EmailId": "abc456@gmail.com"
+        },
+        {
+            "id": 3,
+            "FirstName": "Ajay",
+            "LastName": "Matkar",
+            "Address": "Chembur",
+            "City": "Mumbai",
+            "State": "Maharashtra",
+            "Zip": 456123,
+            "PhoneNumber": 8523697412,
+            "EmailId": "abc789@gmail.com"
+        },
+        {
+            "id": 4,
+            "FirstName": "Aman",
+            "LastName": "Nikam",
+            "Address": "Borivali",
+            "City": "Mumbai",
+            "State": "Maharashtra",
+            "Zip": 400123,
+            "PhoneNumber": 9856723410,
+            "EmailId": "abc709@gmail.com"
+        }
+    ]
+}

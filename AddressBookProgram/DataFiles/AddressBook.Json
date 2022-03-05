@@ -1,1 +1,72 @@
-{"Home":{"contactList":{"Raj Verma":{"firstName":"Raj","lastName":"Verma","address":"Ghansoli","city":"NaviMumbai","state":"Maharashtra","zip":456123,"phoneNumber":9517534561,"emailId":"abc123@gmail.com"},"Yash Verma":{"firstName":"Yash","lastName":"Verma","address":"Sec-45","city":"Noida","state":"Delhi","zip":789456,"phoneNumber":7412589631,"emailId":"abc456@gmail.com"},"Ajay Matkar":{"firstName":"Ajay","lastName":"Matkar","address":"Chembur","city":"Mumbai","state":"Maharashtra","zip":456123,"phoneNumber":8523697412,"emailId":"abc789@gmail.com"}},"addressContactBook":{}}}
+{
+    "Home": {
+        "contactList": {
+            "Raj Verma": {
+                "FirstName": "Raj",
+                "LastName": "Verma",
+                "Address": "Ghansoli",
+                "City": "NaviMumbai",
+                "State": "Maharashtra",
+                "Zip": 456123,
+                "PhoneNumber": 9517534561,
+                "EmailId": "abc123@gmail.com"
+            },
+            "Yash Verma": {
+                "FirstName": "Yash",
+                "LastName": "Verma",
+                "Address": "Sec-45",
+                "City": "Noida",
+                "State": "Delhi",
+                "Zip": 789456,
+                "PhoneNumber": 7412589631,
+                "EmailId": "abc456@gmail.com"
+            },
+            "Ajay Matkar": {
+                "FirstName": "Ajay",
+                "LastName": "Matkar",
+                "Address": "Chembur",
+                "City": "Mumbai",
+                "State": "Maharashtra",
+                "Zip": 456123,
+                "PhoneNumber": 8523697412,
+                "EmailId": "abc789@gmail.com"
+            }
+        },
+        "addressContactBook": {}
+    },
+    "Office": {
+        "contactList": {
+            "Raj Verma": {
+                "FirstName": "Raj",
+                "LastName": "Verma",
+                "Address": "Ghansoli",
+                "City": "NaviMumbai",
+                "State": "Maharashtra",
+                "Zip": 456123,
+                "PhoneNumber": 9517534561,
+                "EmailId": "abc123@gmail.com"
+            },
+            "Yash Verma": {
+                "FirstName": "Yash",
+                "LastName": "Verma",
+                "Address": "Sec-45",
+                "City": "Noida",
+                "State": "Delhi",
+                "Zip": 789456,
+                "PhoneNumber": 7412589631,
+                "EmailId": "abc456@gmail.com"
+            },
+            "Ajay Matkar": {
+                "FirstName": "Ajay",
+                "LastName": "Matkar",
+                "Address": "Chembur",
+                "City": "Mumbai",
+                "State": "Maharashtra",
+                "Zip": 456123,
+                "PhoneNumber": 8523697412,
+                "EmailId": "abc789@gmail.com"
+            }
+        },
+        "addressContactBook": {}
+    }
+}

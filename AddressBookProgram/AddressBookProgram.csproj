@@ -85,7 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="DataFiles\AddressBook.Json" />
+    <None Include="DataFiles\AddressBook.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
