@@ -65,17 +65,6 @@
       "ZipCode": 400741,
       "EmailId": "yash@gmail.com",
       "id": 6
-    },
-    {
-      "FirstName": "Ankit",
-      "LastName": "Varma",
-      "PhoneNumber": 9513554761,
-      "Address": "Powai",
-      "City": "Mumbai",
-      "State": "Maharashtra",
-      "ZipCode": 400321,
-      "EmailId": "ankit@gmail.com",
-      "id": 7
     }
   ]
 }

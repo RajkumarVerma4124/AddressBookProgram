@@ -49,7 +49,7 @@ namespace AddressBookRestSharpTesting
                 //converting response to list of objects
                 var resContact = JsonConvert.DeserializeObject<List<Contact>>(response.Content);
                 //Check whether all contents are received or not
-                Assert.AreEqual(7, resContact.Count);
+                Assert.AreEqual(6, resContact.Count);
                 //Checking the response statuscode
                 Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
                 foreach (var contact in resContact)
@@ -123,9 +123,9 @@ namespace AddressBookRestSharpTesting
                 });
                 //Calling the get all contact method to check if its added or not
                 IRestResponse response = GetAllContacts();
-                //Convert json object to contact object
-                var res = JsonConvert.DeserializeObject<List<Contact>>(response.Content);
-                res.ForEach((contact) =>
+                //Converting json object to contact object
+                var contactsList = JsonConvert.DeserializeObject<List<Contact>>(response.Content);
+                contactsList.ForEach((contact) =>
                 {
                     Console.WriteLine("Contact Id : " + contact.Id + " " + contact);
                 });
@@ -149,13 +149,13 @@ namespace AddressBookRestSharpTesting
                 //object for json
                 JsonObject json1 = new JsonObject();
                 //Adding new person details to json object
-                json1.Add("FirstName", "Rajkumar");
+                json1.Add("FirstName", "Raj");
                 json1.Add("LastName", "Verma");
                 json1.Add("PhoneNumber", 9517534561);
-                json1.Add("Address", "Ghansoli");
-                json1.Add("City", "Mumbai");
+                json1.Add("Address", "Vashi");
+                json1.Add("City", "NaviMumbai");
                 json1.Add("State", "Maharashra");
-                json1.Add("Zip", 456582);
+                json1.Add("Zip", 456025);
                 json1.Add("EmailId", "rajkumar@gmail.com");
                 //Adding type as json in request and passing the json object as a body of request
                 request.AddParameter("application/json", json1, ParameterType.RequestBody);
@@ -166,7 +166,34 @@ namespace AddressBookRestSharpTesting
                 //Checking the response statuscode
                 Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
                 //Printing updated contact
-                Console.WriteLine("Contact Id : " + contact.Id + " " + contact);
+                Console.WriteLine("Contact Id : "+contact.Id+" "+contact);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        //Test method to delete contact based on id using json server(UC19-TC19.1)
+        [TestMethod]
+        public void DeleteContactsUsingJsonServer()
+        {
+            try
+            {
+                //Setting rest request to url and setting method to delete for deleting particular contact record using id
+                RestRequest request = new RestRequest("/contacts/7", Method.DELETE);
+                //Executing the request
+                IRestResponse response = client.Execute(request);
+                //Calling the get all contact method to check if its added or not
+                IRestResponse restResponse = GetAllContacts();
+                //Converting json object to contact object
+                var contactList = JsonConvert.DeserializeObject<List<Contact>>(restResponse.Content);
+                contactList.ForEach((contact) =>
+                {
+                    Console.WriteLine("Contact Id : "+contact.Id+" "+contact);
+                });
+                //Checking the response statuscode
+                Assert.AreEqual(HttpStatusCode.OK, restResponse.StatusCode);
             }
             catch (Exception ex)
             {
