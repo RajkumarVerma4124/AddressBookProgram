@@ -137,5 +137,41 @@ namespace AddressBookRestSharpTesting
                 Console.WriteLine(ex.Message);
             }
         }
+
+        //Test method to update contacts of addressbook using json server(UC18-TC18.1)
+        [TestMethod]
+        public void UpdateContactOfABFileUsingJsonServer()
+        {
+            try
+            {
+                //Setting rest request to url and setting method to put to update contacts
+                RestRequest request = new RestRequest("/contacts/5", Method.PUT);
+                //object for json
+                JsonObject json1 = new JsonObject();
+                //Adding new person details to json object
+                json1.Add("FirstName", "Rajkumar");
+                json1.Add("LastName", "Verma");
+                json1.Add("PhoneNumber", 9517534561);
+                json1.Add("Address", "Ghansoli");
+                json1.Add("City", "Mumbai");
+                json1.Add("State", "Maharashra");
+                json1.Add("Zip", 456582);
+                json1.Add("EmailId", "rajkumar@gmail.com");
+                //Adding type as json in request and passing the json object as a body of request
+                request.AddParameter("application/json", json1, ParameterType.RequestBody);
+                //execute the request
+                IRestResponse response = client.Execute(request);
+                //deserialize json object to person class  object
+                var contact = JsonConvert.DeserializeObject<Contact>(response.Content);
+                //Checking the response statuscode
+                Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+                //Printing updated contact
+                Console.WriteLine("Contact Id : " + contact.Id + " " + contact);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
     }
 }

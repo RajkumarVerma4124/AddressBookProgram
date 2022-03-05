@@ -45,14 +45,14 @@
       "EmailId": "abc709@gmail.com"
     },
     {
-      "FirstName": "Mahipal",
-      "LastName": "Purohit",
-      "PhoneNumber": 9513574561,
-      "Address": "Powai",
+      "FirstName": "Rajkumar",
+      "LastName": "Verma",
+      "PhoneNumber": 9517534561,
+      "Address": "Ghansoli",
       "City": "Mumbai",
-      "State": "Maharashtra",
-      "ZipCode": 400123,
-      "EmailId": "mahipal@gmail.com",
+      "State": "Maharashra",
+      "Zip": 456582,
+      "EmailId": "rajkumar@gmail.com",
       "id": 5
     },
     {
